@@ -1,11 +1,5 @@
-# Refactor the while condition:
-#
-# while goblin.health > 0 and hero.health > 0:
-# to
-#
-# while goblin.alive() and hero.alive():
-# The health checks should be moved to within the alive methods of
-# Hero and Goblin respectively.
+# Take the code for printing the health status of the hero and move it into a method
+# called print_status of Hero. Do the same for the goblin.
 
 class Hero:
     def __init__(self, health, power):
@@ -17,6 +11,9 @@ class Hero:
     def alive(self):
         if self.health > 0:
             return True
+    def print_status(self):
+        print("You have {} health and {} power.".format(hero.health, hero.power))
+
 class Goblin:
     def __init__(self, health, power):
         self.health = health
@@ -27,12 +24,17 @@ class Goblin:
     def alive(self):
         if self.health > 0:
             return True
+    def print_status(self):
+        print("The goblin has {} health and {} power.".format(goblin.health, goblin.power))
+
 hero = Hero(10, 5)
 goblin = Goblin(6, 2)
-# This while statement was changed.
 while goblin.alive() and hero.alive():
-    print("You have {} health and {} power.".format(hero.health, hero.power))
-    print("The goblin has {} health and {} power.".format(goblin.health, goblin.power))
+    # These lines replace the lines below them.
+    hero.print_status()
+    goblin.print_status()
+    # print("You have {} health and {} power.".format(hero.health, hero.power))
+    # print("The goblin has {} health and {} power.".format(goblin.health, goblin.power))
     print()
     print("What do you want to do?")
     print("1. fight goblin")
@@ -51,7 +53,6 @@ while goblin.alive() and hero.alive():
         break
     else:
         print("Invalid input {}".format(raw_input))
-# I changed the below if statement as well.
     if goblin.alive():
         goblin.attack(hero)
         if hero.health <= 0:
