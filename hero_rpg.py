@@ -1,7 +1,6 @@
-# Take the code for the hero attacking the goblin and extract it into a method
-# (call it attack) of the Hero class. Replace the existing code with a call to
-# the attack method. Hint: attack should take in the goblin (enemy)
-# as a parameter: hero.attack(goblin)
+# Similarly, take the code for the goblin attacking the hero and extract it into a method
+# (also call it attack) of the Goblin class. Replace the existing code with a call to the attack method.
+# It should look like goblin.attack(hero).
 
 class Hero:
     def __init__(self, health, power):
@@ -15,6 +14,9 @@ class Goblin:
     def __init__(self, health, power):
         self.health = health
         self.power = power
+    def attack(self, hero):
+        hero.health -= goblin.power
+        print("The goblin does {} damage to you.".format(goblin.power))
 hero = Hero(10, 5)
 goblin = Goblin(6, 2)
 
@@ -29,10 +31,6 @@ while goblin.health > 0 and hero.health > 0:
     print("> ", end=' ')
     raw_input = input()
     if raw_input == "1":
-        # Hero attacks goblin
-        # hero.attack(goblin) replaces the next two lines:
-            # goblin.health -= hero.power
-            # print("You do {} damage to the goblin.".format(hero.power))
         hero.attack(goblin)
         if goblin.health <= 0:
             print("The goblin is dead.")
@@ -46,7 +44,9 @@ while goblin.health > 0 and hero.health > 0:
 
     if goblin.health > 0:
         # Goblin attacks hero
-        hero.health -= goblin.power
-        print("The goblin does {} damage to you.".format(goblin.power))
+        goblin.attack(hero)
+        # The abov line replaces the below line.
+        # hero.health -= goblin.power
+        # print("The goblin does {} damage to you.".format(goblin.power))
         if hero.health <= 0:
             print("You are dead.")
