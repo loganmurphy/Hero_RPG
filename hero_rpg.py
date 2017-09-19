@@ -1,37 +1,34 @@
-# Do you see a lot of duplicated or similar code between Hero and Goblin? What if you can share
-# the duplicated code between them? You can by using inheritance! Create a new class called
-# Character and make both Hero and Goblin inherit from it.
+# The alive methods on Hero and Goblin should be identical.
+# Move it into Character, and remove them from Hero
+# and Goblin - now they can simply inherit it from Character.
 
 class Character:
     def __init__(self, health, power):
         self.health = health
         self.power = power
-
-class Hero (Character):
-    # This is now inherited from Character:
-    # def __init__(self, health, power):
-    #     self.health = health
-    #     self.power = power
-    def attack(self, goblin):
-        goblin.health -= hero.power
-        print("You do {} damage to the goblin.".format(hero.power))
     def alive(self):
         if self.health > 0:
             return True
+            
+class Hero (Character):
+    def attack(self, goblin):
+        goblin.health -= hero.power
+        print("You do {} damage to the goblin.".format(hero.power))
+    # This is now inherited from Character.
+    # def alive(self):
+    #     if self.health > 0:
+    #         return True
     def print_status(self):
         print("You have {} health and {} power.".format(hero.health, hero.power))
 
 class Goblin (Character):
-    # This is now inherited from Character:
-    # def __init__(self, health, power):
-    #     self.health = health
-    #     self.power = power
     def attack(self, hero):
         hero.health -= goblin.power
         print("The goblin does {} damage to you.".format(goblin.power))
-    def alive(self):
-        if self.health > 0:
-            return True
+    # This is now inherited from Character.
+    # def alive(self):
+    #     if self.health > 0:
+    #         return True
     def print_status(self):
         print("The goblin has {} health and {} power.".format(goblin.health, goblin.power))
 
