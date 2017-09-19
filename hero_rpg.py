@@ -1,18 +1,16 @@
-# In this simple RPG game, the hero fights the goblin. He has the options to:
-
-# 1. fight goblin
-# 2. do nothing - in which case the goblin will attack him anyway
-# 3. flee
-# Step 1
-#
-# Make a Hero class to store the health and power of the hero, and make a Goblin class to store the health and power of the goblin.
-# Use a hero object in place of the variables hero.health and hero.power and use a goblin object in place of the variables goblin.health
-# and goblin.power all through out the app.
+# Take the code for the hero attacking the goblin and extract it into a method
+# (call it attack) of the Hero class. Replace the existing code with a call to
+# the attack method. Hint: attack should take in the goblin (enemy)
+# as a parameter: hero.attack(goblin)
 
 class Hero:
     def __init__(self, health, power):
         self.health = health
         self.power = power
+    def attack(self, goblin):
+        goblin.health -= hero.power
+        print("You do {} damage to the goblin.".format(hero.power))
+
 class Goblin:
     def __init__(self, health, power):
         self.health = health
@@ -32,8 +30,10 @@ while goblin.health > 0 and hero.health > 0:
     raw_input = input()
     if raw_input == "1":
         # Hero attacks goblin
-        goblin.health -= hero.power
-        print("You do {} damage to the goblin.".format(hero.power))
+        # hero.attack(goblin) replaces the next two lines:
+            # goblin.health -= hero.power
+            # print("You do {} damage to the goblin.".format(hero.power))
+        hero.attack(goblin)
         if goblin.health <= 0:
             print("The goblin is dead.")
     elif raw_input == "2":
@@ -50,4 +50,3 @@ while goblin.health > 0 and hero.health > 0:
         print("The goblin does {} damage to you.".format(goblin.power))
         if hero.health <= 0:
             print("You are dead.")
-            
