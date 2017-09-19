@@ -1,40 +1,52 @@
-# The alive methods on Hero and Goblin should be identical.
-# Move it into Character, and remove them from Hero
-# and Goblin - now they can simply inherit it from Character.
+# The methods attack and print_status method in Hero and Goblin look
+# almost identical, but not quite. Is it possible to move them into the
+# Character class as well? Give it a try.
 
 class Character:
-    def __init__(self, health, power):
+    def __init__(self, name, health, power):
         self.health = health
         self.power = power
+        self.name = name
     def alive(self):
         if self.health > 0:
             return True
-            
-class Hero (Character):
-    def attack(self, goblin):
-        goblin.health -= hero.power
-        print("You do {} damage to the goblin.".format(hero.power))
-    # This is now inherited from Character.
-    # def alive(self):
-    #     if self.health > 0:
-    #         return True
     def print_status(self):
-        print("You have {} health and {} power.".format(hero.health, hero.power))
+        if self.name is "Hero":
+            who = "You have"
+        else:
+            who = "The goblin has"
+        print("{} {} health and {} power.".format(who, self.health, self.power))
+    def attack(self, enemy):
+        if self.name == "Hero":
+            attacker = "You do"
+            attackee = "the goblin"
+        else:
+            attacker = "The goblin does"
+            attackee = "you"
+        enemy.health -= self.power
+        print("{} {} damage to {}.".format(attacker, self.power, attackee))
+
+class Hero (Character):
+    pass
+    # Everything is in the Character class now.
+    # def attack(self, goblin):
+    #     goblin.health -= hero.power
+    #     print("You do {} damage to the goblin.".format(hero.power))
+    # def print_status(self):
+    #     print("You have {} health and {} power.".format(hero.health, hero.power))
 
 class Goblin (Character):
-    def attack(self, hero):
-        hero.health -= goblin.power
-        print("The goblin does {} damage to you.".format(goblin.power))
-    # This is now inherited from Character.
-    # def alive(self):
-    #     if self.health > 0:
-    #         return True
-    def print_status(self):
-        print("The goblin has {} health and {} power.".format(goblin.health, goblin.power))
+    pass
+    # Everything is in the Character class now.
+    # def attack(self, hero):
+    #     hero.health -= goblin.power
+    #     print("The goblin does {} damage to you.".format(goblin.power))
+    # def print_status(self):
+    #     print("The goblin has {} health and {} power.".format(goblin.health, goblin.power))
 
-hero = Hero(10, 5)
-goblin = Goblin(6, 2)
-print(hero.health)
+hero = Hero("Hero", 10, 5)
+goblin = Goblin("Goblin", 6, 2)
+
 while goblin.alive() and hero.alive():
     hero.print_status()
     goblin.print_status()
