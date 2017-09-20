@@ -5,8 +5,8 @@ from characters import *
 
 im = Image.open("you-are-dead-screen.jpg")
 # print('hello')
-player = Warrior(10, 5, "warrior")
-monster = Goblin(6, 2, "bandit")
+player = Warrior(100, 5, "warrior", 'player')
+monster = Goblin(100, 2, "goblin")
 
 
 while monster.alive() and player.alive():
