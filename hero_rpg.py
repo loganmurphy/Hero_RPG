@@ -1,6 +1,7 @@
 # Create a zombie character that cannot die and have it fight
 # the hero instead of the goblin.
-
+from PIL import Image
+im = Image.open("you-are-dead-screen.jpg")
 class Character:
     def __init__(self, name, health, power):
         self.health = health
@@ -68,4 +69,5 @@ while zombie.alive() and hero.alive():
     if zombie.alive():
         zombie.attack(hero)
         if hero.health <= 0:
+            im.show()
             print("You are dead.")
