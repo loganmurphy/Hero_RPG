@@ -11,8 +11,8 @@ class Goblin(Base_Stats):
             self.power = 0
             print("The {} missed!".format(self.char_class))
         else:
-            enemy.health -= self.power
-            print("The {} did {} damage to the {}.".format(self.char_class, self.power, enemy.char_class))
+            adjusted_damage = self.power - enemy.armor
+            enemy.health = (enemy.health - adjusted_damage)
         self.power = 2
 # make a Zombie character that doesn't die even if his health is below zero
 class Zombie(Goblin):

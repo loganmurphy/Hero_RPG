@@ -19,13 +19,14 @@ class Shadow(Base_Stats):
     pass
 
 class Mage(Base_Stats):
-    def __init__(self, health, power, mana, char_class, gold, weapon, health_potion, potion_of_mana):
+    def __init__(self, health, power, mana, char_class, gold, weapon, armor, health_potion, potion_of_mana):
         self.health = health
         self.power = power
         self.char_class = char_class
         self.mana = mana
         self.gold = gold
         self.weapon = weapon
+        self.armor = armor
         self.health_potion = health_potion
         self.potion_of_mana = potion_of_mana
     def special(self, enemy):
