@@ -1,10 +1,11 @@
 from random import *
 
 class Base_Stats:
-    def __init__(self, health, power, char_class):
+    def __init__(self, health, power, char_class, gold):
         self.health = health
         self.power = power
         self.char_class = char_class
+        self.gold = gold
     def special(self, enemy):
         pass
     def attack(self, enemy):

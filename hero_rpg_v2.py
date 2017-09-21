@@ -5,12 +5,14 @@ from PIL import Image
 from characters import *
 
 im = Image.open("you-are-dead-screen.jpg")
-# player = Warrior(10, 5, "warrior")
-# player = Medic(10, 3, "medic")
-player = Mage(8, 2, 10, "mage")
-# monster = Goblin(6, 2, "goblin")
-monster = Zombie(10, 2, "zombie")
-# monster = Zombie(0, 2, "zombie")
+# Give each enemy a bounty.
+# player = Warrior(10, 5, "warrior", 0)
+# player = Medic(10, 3, "medic", 0)
+# player = Shadow(1, 3, "shadow", 0)
+player = Mage(8, 2, 10, "mage", 0)
+# monster = Goblin(6, 2, "goblin", 2)
+monster = Zombie(10, 2, "zombie", 7)
+# monster = Orc(10, 3, "orc", 4)
 
 while monster.alive() and player.alive():
     player.print_status()
@@ -23,8 +25,10 @@ while monster.alive() and player.alive():
     raw_input = input()
     if raw_input == "1":
         player.attack(monster)
-        if monster.health <= 0: # and monster.char_class not in ["zombie"]:
+        if monster.health <= 0:
+            player.gold += monster.gold
             print("The ", monster.char_class, " is dead.")
+            print("You looted {} gold pieces".format(monster.gold))
     elif raw_input == "2":
         pass
     elif raw_input == "3":

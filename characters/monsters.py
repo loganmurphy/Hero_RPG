@@ -19,3 +19,12 @@ class Zombie(Goblin):
     def alive(self):
         if self.health > 0:
             return True
+
+# come up with at least two other characters with their individual
+# characteristics, and implement them.
+# Here's another.
+
+class Orc(Goblin):
+    def special(self, enemy):
+        if self.health < 5:
+            self.power = self.power * 1.5
