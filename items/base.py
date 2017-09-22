@@ -5,4 +5,3 @@ class Base_Weapon:
 class Base_Item:
     def __init__(self, effect):
         self.effect = effect
-        # self.ammount = ammount

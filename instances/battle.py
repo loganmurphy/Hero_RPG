@@ -1,5 +1,4 @@
 from PIL import Image
-
 from characters import *
 from items import *
 
