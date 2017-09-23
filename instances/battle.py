@@ -1,8 +1,10 @@
 from PIL import Image
-from characters import *
+from characters.heroes import *
+from characters.base import Base_Stats
 from items import *
 
 im = Image.open("you-are-dead-screen.jpg")
+
 def battle(self, enemy):
     while enemy.alive() and self.alive():
         self.print_status()
@@ -10,11 +12,15 @@ def battle(self, enemy):
         print("What do you want to do?")
         print("1. fight ", enemy.char_class)
         print("2. drink a potion")
-        print("3. do nothing")
-        print("4. flee")
+        print("3. throw a bomb")
+        print("4. swap")
+        print("5. do nothing")
+        print("6. flee")
         print("> ", end=' ')
         raw_input = input()
-        if raw_input == "1":
+        if raw_input not in ["1", "2", "3", "4", "5", "6"]:
+            print("Invalid input {}".format(raw_input))
+        elif raw_input == "1":
             self.attack(enemy)
             if enemy.health <= 0:
                 self.gold += enemy.gold
@@ -30,13 +36,21 @@ def battle(self, enemy):
             else:
                 print("You have no healing potions!")
         elif raw_input == "3":
-            pass
+            enemy.power, self.power = self.power, enemy.power
+            if self.bomb > 0:
+                print("Your bomb did {} damage.".format(bomb.effect))
+                enemy.health -= bomb.effect
+                self.bomb -= 1
+            else:
+                print("You have no bombs!")
         elif raw_input == "4":
-            print("Goodbye.")
+            self.swap(enemy)
+        elif raw_input == "5":
+            pass
+        elif raw_input == "6":
+            print("You got away!")
             break
-        else:
-            print("Invalid input {}".format(raw_input))
-        if enemy.alive():
+        if enemy.alive() and raw_input != "4":
             enemy.attack(self)
             if self.health <= 0:
                 im.show()

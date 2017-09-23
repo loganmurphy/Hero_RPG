@@ -1,14 +1,16 @@
 from random import *
 from items.weapons import *
+from items.items import *
 
 class Base_Stats:
-    def __init__(self, health, power, char_class, gold, weapon, armor, evade, health_potion):
+    def __init__(self, health, power, char_class, gold, weapon, armor, bomb, evade, swap, health_potion):
         self.health = health
         self.power = power
         self.char_class = char_class
         self.gold = gold
         self.weapon = weapon
         self.armor = armor
+        self.bomb = bomb
         self.evade = evade
         self.health_potion = health_potion
     def drink_potion(self, potion):
@@ -22,6 +24,19 @@ class Base_Stats:
             print("You have none!")
     def special(self, enemy):
         pass
+    def swap(self, enemy):
+        w = self.power
+        self.power = enemy.power
+        enemy.power = w
+        del w
+        self.print_status()
+        enemy.print_status()
+        self.attack(enemy)
+        enemy.attack(self)
+        w = self.power
+        self.power = enemy.power
+        enemy.power = w
+        del w
     def attack(self, enemy):
         self.special(enemy)
         die1 = randrange(1,7)

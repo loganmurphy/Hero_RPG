@@ -24,3 +24,17 @@ else:
     player_char = mage
 
 battle(player_char, goblin)
+go_shopping(player_char)
+battle(player_char, orc)
+go_shopping(player_char)
+battle(player_char, zombie)
+go_shopping(player_char)
+battle(player_char, orc)
+go_shopping(player_char)
+battle(player_char, orc)
+go_shopping(player_char)
+battle(player_char, goblin)
+if player_char.alive() == True:
+    print("Congratulations, you have vanquished all of your foes. You are a true hero!")
+else:
+    pass

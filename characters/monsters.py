@@ -7,7 +7,7 @@ class Goblin(Base_Stats):
         die1 = randrange(1,7)
         die2 = randrange(1,7)
         if die1 + die2 > 3 and enemy.char_class == "shadow":
-            self.power = 0
+            # self.power = 0
             print("The {} missed!".format(self.char_class))
         elif enemy.evade == 2 and die1 + die2 > 11:
             self.power = 0
@@ -28,7 +28,7 @@ class Goblin(Base_Stats):
             adjusted_damage = self.power - enemy.armor
             enemy.health = (enemy.health - adjusted_damage)
             print("The {} does {} damage to the {}.".format(self.char_class, adjusted_damage, enemy.char_class))
-        self.power = 2
+        # self.power = 2
 
 class Zombie(Goblin):
     def alive(self):
@@ -39,6 +39,7 @@ class Orc(Goblin):
     def special(self, enemy):
         if self.health < 5:
             self.power = self.power * 1.5
-goblin = Goblin(6000, 2, "goblin", 2, None, 0, None, None)
-zombie = Zombie(10, 2, "zombie", 7, None, 0, None, None)
-orc = Orc(10, 3, "orc", 4, None, 0, None, None)
+
+goblin = Goblin(6, 2, "goblin", 2, None, 0, None, None, None, None)
+zombie = Zombie(10, 2, "zombie", 7, None, 0, None, None, None, None)
+orc = Orc(10, 3, "orc", 4, None, 0, None, None, None, None)
